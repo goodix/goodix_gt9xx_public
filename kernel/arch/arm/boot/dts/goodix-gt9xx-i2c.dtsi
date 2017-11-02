@@ -1,0 +1,68 @@
+/*
+ * Goodix GT9xx touchscreen driver
+ *
+ * Copyright  (C)  2016 - 2017 Goodix. Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be a reference
+ * to you, when you are integrating the GOODiX's CTP IC into your system,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ */
+
+&soc {
+	i2c@78b6000 { /* BLSP1 QUP2 */
+			
+		gt9xx-i2c@5d {
+			compatible = "goodix,gt9xx";
+			reg = <0x5d>; 
+			status = "okay";
+			interrupt-parent = <&msm_gpio>;
+			interrupts = <13 0x2800>;
+			pinctrl-names = "default", "int-output-low", "int-output-high", "int-input";
+			pinctrl-0 = <&ts_int_default>;
+			pinctrl-1 = <&ts_int_output_low>;
+			pinctrl-2 = <&ts_int_output_high>;
+			pinctrl-3 = <&ts_int_input>;
+			
+			reset-gpios = <&msm_gpio 12 0x0>;
+			irq-gpios = <&msm_gpio 13 0x2800>;
+			irq-flags = <2>;
+
+			touchscreen-max-id = <11>;
+			touchscreen-size-x = <1080>;
+			touchscreen-size-y = <1920>;
+			touchscreen-max-w = <1024>;
+			touchscreen-max-p = <1024>;
+			/*touchscreen-key-map = <172>, <158>;*/ /*KEY_HOMEPAGE, KEY_BACK*/
+
+			goodix,type-a-report = <0>;
+			goodix,driver-send-cfg = <1>;
+			goodix,create-wr-node = <1>;
+			goodix,wakeup-with-reset = <0>;
+			goodix,resume-in-workqueue = <0>;
+			goodix,int-sync = <1>;
+			goodix,swap-x2y = <0>;
+			goodix,esd-protect = <1>;
+			goodix,pen-suppress-finger = <0>; 
+			goodix,auto-update = <0>;
+			goodix,auto-update-cfg = <0>;
+			goodix,power-off-sleep = <0>;
+			
+			goodix.cfg-group0 = [
+				00 38 04 80 07 0A 3D 00 01 CA 28 0A 5A 3C 0A 04 00 00 00 00 11 11 00 17 19 1E 14 95 35 FF 
+				2E 30 09 19 00 00 00 01 04 1C 00 00 00 00 00 00 00 00 00 00 00 19 41 94 45 02 07 00 00 04 
+				9A 1B 00 85 21 FF 74 28 00 66 31 00 5B 3B 00 5B 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+				00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 1D 1C 1B 1A 19 18 17 16 
+				15 14 13 12 11 10 0F 0E 0D 0C 0B 0A 09 08 07 06 05 04 03 02 01 00 2A 29 28 27 26 25 24 23 
+				22 21 20 1F 1E 1D 1C 1B 19 18 17 16 15 14 13 12 11 10 0F 0E 0D 0C 0B 0A 09 08 07 06 05 04 
+				03 02 01 00 89 01
+			];
+		};
+	};
+};

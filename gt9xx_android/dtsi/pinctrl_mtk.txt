@@ -1,0 +1,30 @@
+&pio {
+	ts_int_default: tsintdefault {
+		pins_cmd_dat {
+			pins = <PINMUX_GPIO86__FUNC_EINT9>;
+			slew-rate = <0>;
+			bias-disable;
+		};
+	};
+	ts_int_output_low: tsintoutlow {
+		pins_cmd_dat {
+			pins = <PINMUX_GPIO86__FUNC_GPIO86>;
+			slew-rate = <1>;
+			output-low;
+		};
+	};
+	ts_int_output_high: tsintouthigh {
+		pins_cmd_dat {
+			pins = <PINMUX_GPIO86__FUNC_GPIO86>;
+			slew-rate = <1>;
+			output-high;
+		};
+	};
+	ts_int_input: tsintinput {
+		pins_cmd_dat {
+			pins = <PINMUX_GPIO86__FUNC_EINT9>;
+			slew-rate = <0>;
+			bias-disable;
+		};
+	};
+};
